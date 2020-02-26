@@ -1047,9 +1047,16 @@ void ptt_init (struct audio_s *audio_config_p)
 
 #endif
 
+	for (ch=0; ch<MAX_CHANS; ch++) {
+	  if (audio_config_p->achan[ch].valid) {
+	    if(audio_config_p->achan[ch].octrl[OCTYPE_PTT].ptt_method == PTT_METHOD_ARDUINO) {
+	      text_color_set(DW_COLOR_INFO);
+	      dw_printf ("Note: ARDUINO YEA %d. (Things Work)\n", ch);
+	    }
+	  }
+	}
 
 /* Why doesn't it transmit?  Probably forgot to specify PTT option. */
-
 	for (ch=0; ch<MAX_CHANS; ch++) {
 	  if (audio_config_p->achan[ch].valid) {
 	    if(audio_config_p->achan[ch].octrl[OCTYPE_PTT].ptt_method == PTT_METHOD_NONE) {
@@ -1127,6 +1134,18 @@ void ptt_set (int ot, int chan, int ptt_signal)
 	}
 	if (save_audio_config_p->achan[chan].octrl[ot].ptt_invert2) {
 	  ptt2 = ! ptt2;
+	}
+
+/* Using the arduino */
+
+	if (save_audio_config_p->achan[chan].octrl[ot].ptt_method == PTT_METHOD_ARDUINO){
+		if (ptt) {
+	    	text_color_set(DW_COLOR_ERROR);
+	  		dw_printf ("Internal error, you still have shit to do, but on?\n");
+	   	} else {
+	    	text_color_set(DW_COLOR_ERROR);
+	  		dw_printf ("Internal error, you still have shit to do, but off?\n");
+	   	}
 	}
 
 /*

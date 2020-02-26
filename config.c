@@ -1845,6 +1845,12 @@ void config_init (char *fname, struct audio_s *p_audio_config,
 	      exit (EXIT_FAILURE);
 #endif
 	    }
+	    else if (strcasecmp(t, "ard") == 0) {
+/* Arduino Case*/
+
+	    	t = split(NULL,0);
+	    	 p_audio_config->achan[channel].octrl[ot].ptt_method = PTT_METHOD_ARDUINO;
+	    }
 	    else  {
 
 /* serial port case. */

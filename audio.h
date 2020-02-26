@@ -31,7 +31,8 @@ enum ptt_method_e {
 	PTT_METHOD_GPIO,	/* General purpose I/O, Linux only. */
 	PTT_METHOD_LPT,	    	/* Parallel printer port, Linux only. */
 	PTT_METHOD_HAMLIB, 	/* HAMLib, Linux only. */
-	PTT_METHOD_CM108 };	/* GPIO pin of CM108/CM119/etc.  Linux only. */
+	PTT_METHOD_CM108,
+	PTT_METHOD_ARDUINO };	/* GPIO pin of CM108/CM119/etc.  Linux only. */
 
 typedef enum ptt_method_e ptt_method_t;
 
